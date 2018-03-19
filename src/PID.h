@@ -1,6 +1,9 @@
 #ifndef PID_H
 #define PID_H
 
+#include <deque>
+#include <vector>
+
 class PID {
 public:
   /*
@@ -11,11 +14,25 @@ public:
   double d_error;
 
   /*
+  * Maximum abs Errors
+  */
+  double max_abs_p_error;
+  double max_abs_i_error;
+  double max_abs_d_error;
+  double max_abs_error;
+
+  /*
   * Coefficients
   */ 
   double Kp;
   double Ki;
   double Kd;
+
+  /*
+   * previous cte value and flag, used to calculate derivative
+   */
+  std::deque<double> prev_ctes;
+  std::vector<double> deriv_filter = {-0.2, -0.1, 0, 0.1, 0.2};
 
   /*
   * Constructor
