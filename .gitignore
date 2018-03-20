@@ -4,3 +4,4 @@ tags
 .editorconfig
 .idea
 history.log
+cmake-build-debug
